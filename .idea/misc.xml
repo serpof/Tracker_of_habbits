@@ -9,6 +9,8 @@
         <entry key="app/src/main/res/drawable/touthbrush_background.xml" value="0.2125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2572463768115942" />
         <entry key="app/src/main/res/layout/activity_timer.xml" value="0.2572463768115942" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/touthbrush.xml" value="0.2125" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/touthbrush_round.xml" value="0.2125" />
       </map>
     </option>
   </component>

@@ -1,11 +1,13 @@
 package com.example.trackerofhabbits
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 //import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.core.util.rangeTo
 import java.util.*
 
 enum class TaskState {WORK}
@@ -19,14 +21,14 @@ class timer : AppCompatActivity() {
     lateinit var textView: TextView
     lateinit var progressBar: ProgressBar
     var currentCount = 0
-    private val maxCount = 4
+    private val maxCount = 11
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timer)
         initWidgets()
         startTimer(1000, 1000, 10)
-        imageView.setImageResource(R.drawable.cat)
+        imageView.setImageResource(R.drawable.apply_the_paste)
 
     }
     private fun initWidgets(){
@@ -45,11 +47,12 @@ class timer : AppCompatActivity() {
 */
    private fun startTimer(delay: Long, period: Long, countSeconds: Int){
         val timer = Timer()
-        var taskState = TaskState.WORK
+        val taskState = TaskState.WORK
         var taskProgress = 0
         var seconds = countSeconds
 
         timer.scheduleAtFixedRate(object : TimerTask() {
+            @SuppressLint("SetTextI18n")
             override fun run() {
                 when (taskState) {
                     TaskState.WORK -> {
@@ -68,10 +71,16 @@ class timer : AppCompatActivity() {
                             }
                             currentCount++
                             when (currentCount){
-                                0 -> runOnUiThread {imageView.setImageResource(R.drawable.cat)}
-                                1 -> runOnUiThread {imageView.setImageResource(R.drawable.cat2)}
-                                2 -> runOnUiThread {imageView.setImageResource(R.drawable.cat)}
-                                3 -> runOnUiThread {imageView.setImageResource(R.drawable.cat2)}
+                                1 -> runOnUiThread {imageView.setImageResource(R.drawable.chewing_surface)}
+                                2 -> runOnUiThread {imageView.setImageResource(R.drawable.top_outside_circle)}
+                                3 -> runOnUiThread {imageView.setImageResource(R.drawable.top_outside)}
+                                4 -> runOnUiThread {imageView.setImageResource(R.drawable.top_inside)}
+                                5 -> runOnUiThread {imageView.setImageResource(R.drawable.top_inside)}
+                                6 -> runOnUiThread {imageView.setImageResource(R.drawable.bottom)}
+                                7 -> runOnUiThread {imageView.setImageResource(R.drawable.bottom)}
+                                8 -> runOnUiThread {imageView.setImageResource(R.drawable.chewing_surface)}
+                                9 -> runOnUiThread {imageView.setImageResource(R.drawable.tongue)}
+                                10 -> runOnUiThread {imageView.setImageResource(R.drawable.rinse_your_mouth)}
                             }
                             startAgainIfNeed()
                         }
@@ -84,19 +93,13 @@ class timer : AppCompatActivity() {
 
     private fun startAgainIfNeed() {
         if (currentCount < maxCount){
-            when (currentCount) {
-                1 -> {
-                    startTimer(100, 90, 10)
-                    return
-                }
-                2 -> {
-                    startTimer(500, 450, 20)
-                    return
-                }
-                3 -> {
-                    startTimer(100, 90, 10)
-                    return
-                }
+            if (currentCount == 0 || currentCount > 5 || currentCount < 11){
+                startTimer(1000, 1000, 10)
+                return
+            }
+            else{
+                startTimer(1000, 1000, 20)
+                return
             }
         }
         finish()
