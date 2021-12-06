@@ -56,7 +56,7 @@ class timer : AppCompatActivity() {
             override fun run() {
                 when (taskState) {
                     TaskState.WORK -> {
-                        if (taskProgress < seconds) {
+                        if (taskProgress < countSeconds) {
                             ++taskProgress
 
                             val second = (seconds--).toString()
@@ -93,7 +93,7 @@ class timer : AppCompatActivity() {
 
     private fun startAgainIfNeed() {
         if (currentCount < maxCount){
-            if (currentCount == 0 || currentCount > 5 || currentCount < 11){
+            if (currentCount in 6..10){
                 startTimer(1000, 1000, 10)
                 return
             }
