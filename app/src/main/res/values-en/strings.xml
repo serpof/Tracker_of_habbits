@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Toothman</string>
+    <string name="button">Button</string>
+    <string name="textview">text</string>
+    <string name="about_us">\"Toothman\" - children\'s application for oral hygiene. It is intended to be used by children under parental supervision.\n Author - Sergey Popov "</string>
+    <string name="music_licence">Music Licence\n\n
+        Life of Riley by Kevin MacLeod\n
+        Link: https://incompetech.filmmusic.io/song/3976-life-of-riley\n
+        License: https://filmmusic.io/standard-license\n\n
+        I Feel So Happy by MusicLFiles\n
+        Link: https://filmmusic.io/song/8792-i-feel-so-happy\n
+        License: https://filmmusic.io/standard-license\n\n
+        Tutorial 1 by Frank Schröter\n
+        Link: https://filmmusic.io/song/8793-tutorial-1\n
+        License: https://filmmusic.io/standard-license</string>
+    <string name="count">0</string>
+</resources>
