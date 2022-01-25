@@ -8,6 +8,7 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -15,38 +16,14 @@ class MainActivity : AppCompatActivity() {
 
     var mMediaPlayer: MediaPlayer? = null
     private var exit = false
+    private val firstPeriod = 21600000
+    private val secondPeriod = 57600000
+    private val thirdPeriod = 86400000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         checkSharedPref()
-        val sharedPref: SharedPreferences = getSharedPreferences("settings", MODE_PRIVATE)
-        var lastBrush = sharedPref.getLong("lastBrush", 0)
-        if (lastBrush > 0) {
-            var diffBetweenBrush = System.currentTimeMillis() - sharedPref.getLong("lastBrush", 0)
-            when {
-                diffBetweenBrush > 86400000 -> {
-                    Glide.with(applicationContext)
-                        .load(R.drawable.dirty_tooth_3)
-                        .into(this.view_teeth)
-                }
-                diffBetweenBrush > 57600000 -> {
-                    Glide.with(applicationContext)
-                        .load(R.drawable.dirty_tooth_2)
-                        .into(this.view_teeth)
-                }
-                diffBetweenBrush > 21600000 -> {
-                    Glide.with(applicationContext)
-                        .load(R.drawable.dirty_tooth_1)
-                        .into(this.view_teeth)
-                }
-                else -> {
-                    Glide.with(applicationContext)
-                        .load(R.drawable.clean_tooth)
-                        .into(this.view_teeth)
-                }
-            }
-        }
         start.setOnClickListener{
             Intent(this, timer::class.java).apply {
                 startActivity(this)
@@ -105,6 +82,24 @@ class MainActivity : AppCompatActivity() {
         } else {
             sound.setImageResource(R.drawable.music_on_button)
             pauseSound()
+        }
+        var lastBrush = sharedPref.getLong("lastBrush", 0)
+        if (lastBrush > 0) {
+            var diffBetweenBrush = System.currentTimeMillis() - sharedPref.getLong("lastBrush", 0)
+            when {
+                diffBetweenBrush > thirdPeriod -> {
+                    this.view_teeth.setImageResource(R.drawable.dirty_tooth_3)
+                }
+                diffBetweenBrush > secondPeriod -> {
+                    this.view_teeth.setImageResource(R.drawable.dirty_tooth_2)
+                }
+                diffBetweenBrush > firstPeriod -> {
+                    this.view_teeth.setImageResource(R.drawable.dirty_tooth_1)
+                }
+                else -> {
+                    this.view_teeth.setImageResource(R.drawable.clean_tooth)
+                }
+            }
         }
     }
 

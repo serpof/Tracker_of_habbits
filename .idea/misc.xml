@@ -28,9 +28,9 @@
         <entry key="app/src/main/res/layout-small/timer.xml" value="1.178125" />
         <entry key="app/src/main/res/layout-xlarge/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout-xlarge/timer.xml" value="0.2657051282051282" />
-        <entry key="app/src/main/res/layout/activity_information.xml" value="0.5330708661417323" />
+        <entry key="app/src/main/res/layout/activity_information.xml" value="0.11864956682334978" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/activity_progress.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/activity_progress.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_timer.xml" value="0.2572463768115942" />
         <entry key="app/src/main/res/layout/timer.xml" value="0.20411985018726592" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2125" />

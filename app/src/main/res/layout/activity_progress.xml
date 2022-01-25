@@ -4,15 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/progress_bg"
     tools:context=".Progress">
-
-    <ImageView
-        android:id="@+id/background_progress"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/progress_bg"
-        tools:ignore="ImageContrastCheck" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -23,13 +16,15 @@
             android:id="@+id/container1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="22">
 
             <LinearLayout
                 android:id="@+id/level0"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_weight="1">
 
                 <ImageButton
                     android:id="@+id/btn_back"
@@ -52,21 +47,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:src="@drawable/step_1_inactive" />
+                    android:src="@drawable/step_1_inactive"/>
 
                 <ImageView
                     android:id="@+id/step2"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:src="@drawable/step_inactive" />
+                    android:src="@drawable/step_inactive"/>
 
                 <ImageView
                     android:id="@+id/step3"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:src="@drawable/step_inactive" />
+                    android:src="@drawable/step_inactive"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/level2"

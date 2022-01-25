@@ -12,6 +12,7 @@ import android.util.Log
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
 import com.bumptech.glide.Glide
 import java.util.*
 
@@ -22,6 +23,7 @@ class timer : AppCompatActivity() {
     lateinit var progressBar: ProgressBar
     var currentCount = 0
     private val maxCount = 12
+    private val periodBetweenBrush = 14400000
     var mMediaPlayer: MediaPlayer? = null
 
     @SuppressLint("ResourceType")
@@ -141,9 +143,12 @@ class timer : AppCompatActivity() {
             times = sharedPref.getInt("days", 0)
         }
         var present = System.currentTimeMillis()
-        if (present - sharedPref.getLong("lastBrush", 0) > 25200000) {
+        if (present - sharedPref.getLong("lastBrush", 0) > periodBetweenBrush) {
             sharedPref.edit().putInt("days", ++times).apply()
             sharedPref.edit().putLong("lastBrush", System.currentTimeMillis()).apply()
+        }
+        Intent(this, MainActivity::class.java).apply {
+            startActivity(this)
         }
         finish()
     }

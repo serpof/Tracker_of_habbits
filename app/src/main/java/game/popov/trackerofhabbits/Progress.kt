@@ -6,6 +6,7 @@ import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatDelegate
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_information.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -93,39 +94,17 @@ class Progress : AppCompatActivity() {
         for(i in 0..--endChange){
             var image = this.findViewById<ImageView>(steps[i])
             when(i){
-                0 -> Glide.with(applicationContext)
-                    .load(R.drawable.step_1)
-                    .into(image)
-                6 -> Glide.with(applicationContext)
-                    .load(R.drawable.step_7)
-                    .into(image)
-                13 -> Glide.with(applicationContext)
-                    .load(R.drawable.step_14)
-                    .into(image)
-                20 -> Glide.with(applicationContext)
-                    .load(R.drawable.step_21)
-                    .into(image)
-                27 -> Glide.with(applicationContext)
-                    .load(R.drawable.step_28)
-                    .into(image)
-                34 -> Glide.with(applicationContext)
-                    .load(R.drawable.step_35)
-                    .into(image)
-                41 -> Glide.with(applicationContext)
-                    .load(R.drawable.step_42)
-                    .into(image)
-                48 -> Glide.with(applicationContext)
-                    .load(R.drawable.step_49)
-                    .into(image)
-                55 -> Glide.with(applicationContext)
-                    .load(R.drawable.step_56)
-                    .into(image)
-                62 -> Glide.with(applicationContext)
-                    .load(R.drawable.step_63)
-                    .into(image)
-                else -> Glide.with(applicationContext)
-                    .load(R.drawable.step)
-                    .into(image)
+                0 -> image.setImageResource(R.drawable.step_1)
+                6 -> image.setImageResource(R.drawable.step_7)
+                13 -> image.setImageResource(R.drawable.step_14)
+                20 -> image.setImageResource(R.drawable.step_21)
+                27 -> image.setImageResource(R.drawable.step_28)
+                34 -> image.setImageResource(R.drawable.step_35)
+                41 -> image.setImageResource(R.drawable.step_42)
+                48 -> image.setImageResource(R.drawable.step_49)
+                55 -> image.setImageResource(R.drawable.step_56)
+                62 -> image.setImageResource(R.drawable.step_63)
+                else -> image.setImageResource(R.drawable.step)
             }
         }
 
