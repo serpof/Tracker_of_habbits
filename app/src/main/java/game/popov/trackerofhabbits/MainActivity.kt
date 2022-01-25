@@ -21,9 +21,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         checkSharedPref()
         val sharedPref: SharedPreferences = getSharedPreferences("settings", MODE_PRIVATE)
-        var last_brush = sharedPref.getLong("last_brush", 0)
-        if (last_brush > 0) {
-            var diffBetweenBrush = System.currentTimeMillis() - sharedPref.getLong("last_brush", 0)
+        var lastBrush = sharedPref.getLong("lastBrush", 0)
+        if (lastBrush > 0) {
+            var diffBetweenBrush = System.currentTimeMillis() - sharedPref.getLong("lastBrush", 0)
             when {
                 diffBetweenBrush > 86400000 -> {
                     Glide.with(applicationContext)

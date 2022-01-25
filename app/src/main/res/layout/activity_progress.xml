@@ -10,7 +10,8 @@
         android:id="@+id/background_progress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/progress_gradient"
+        android:scaleType="centerCrop"
+        android:src="@drawable/progress_bg"
         tools:ignore="ImageContrastCheck" />
 
     <ScrollView
@@ -35,6 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_marginStart="10dp"
+                    android:minWidth="48dp"
                     app:srcCompat="?attr/homeAsUpIndicator"
                     tools:ignore="SpeakableTextPresentCheck" />
             </LinearLayout>

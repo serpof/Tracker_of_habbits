@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -105,10 +106,12 @@ class timer : AppCompatActivity() {
                     val second = (seconds--).toString()
                     progressBar.progress = taskProgress
                     runOnUiThread {
+                        textView.setTextColor(Color.BLACK)
                         textView.text = "Осталось секунд: $second"
                     }
                 } else {
                     runOnUiThread {
+                        textView.setTextColor(Color.BLACK)
                         textView.text = "Осталось секунд: 0"
                         progressBar.progress = -1
                         timer.cancel()
@@ -138,11 +141,9 @@ class timer : AppCompatActivity() {
             times = sharedPref.getInt("days", 0)
         }
         var present = System.currentTimeMillis()
-        if (present - sharedPref.getLong("last_brush", 0) > 25200000) {
+        if (present - sharedPref.getLong("lastBrush", 0) > 25200000) {
             sharedPref.edit().putInt("days", ++times).apply()
-            var previous_brush = sharedPref.getLong("last_brush", 0)
-            sharedPref.edit().putLong("last_brush", System.currentTimeMillis()).apply()
-            sharedPref.edit().putLong("previous_brush", previous_brush).apply()
+            sharedPref.edit().putLong("lastBrush", System.currentTimeMillis()).apply()
         }
         finish()
     }

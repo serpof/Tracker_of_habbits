@@ -7,12 +7,11 @@
     tools:viewBindingIgnore="true">
 
     <ImageView
-        android:id="@+id/background_timer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/timer_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/timer_gradient"
-        tools:ignore="ContentDescription,ImageContrastCheck" />
+        app:srcCompat="@drawable/timer_bg" />
 
     <LinearLayout
         android:id="@+id/container1"
@@ -53,13 +52,16 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/black95"/>
+                android:textColor="@color/black95"
+                android:textColorHighlight="@color/black95"
+                android:textColorHint="@color/black95"
+                android:textColorLink="@color/black95" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/container4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="308dp"
+            android:layout_height="40dp"
             android:orientation="horizontal"
             android:padding="1dp">
 

@@ -14,8 +14,6 @@
         >
         <clip>
             <shape>
-                <corners
-                    android:radius="5dip" />
                 <gradient
                     android:startColor="@color/progress_background"
                     android:centerColor="@color/progress_background"
