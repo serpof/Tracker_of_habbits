@@ -6,10 +6,7 @@ import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatDelegate
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_information.*
-import kotlinx.android.synthetic.main.activity_main.*
 
 class Progress : AppCompatActivity() {
 
@@ -92,7 +89,7 @@ class Progress : AppCompatActivity() {
         )
 
         for(i in 0..--endChange){
-            var image = this.findViewById<ImageView>(steps[i])
+            val image = this.findViewById<ImageView>(steps[i])
             when(i){
                 0 -> image.setImageResource(R.drawable.step_1)
                 6 -> image.setImageResource(R.drawable.step_7)

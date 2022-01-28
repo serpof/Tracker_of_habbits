@@ -21,13 +21,13 @@
         <entry key="app/src/main/res/drawable/timer_gradient.xml" value="0.31875" />
         <entry key="app/src/main/res/drawable/touthbrush_background.xml" value="0.2125" />
         <entry key="app/src/main/res/layout-large/activity_main.xml" value="0.25" />
-        <entry key="app/src/main/res/layout-large/timer.xml" value="0.147265625" />
+        <entry key="app/src/main/res/layout-large/timer.xml" value="0.10344827586206896" />
         <entry key="app/src/main/res/layout-normal/activity_main.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/layout-normal/timer.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/layout-small/activity_main.xml" value="0.7854166666666667" />
         <entry key="app/src/main/res/layout-small/timer.xml" value="1.178125" />
         <entry key="app/src/main/res/layout-xlarge/activity_main.xml" value="0.25" />
-        <entry key="app/src/main/res/layout-xlarge/timer.xml" value="0.2657051282051282" />
+        <entry key="app/src/main/res/layout-xlarge/timer.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_information.xml" value="0.11864956682334978" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_progress.xml" value="0.165" />

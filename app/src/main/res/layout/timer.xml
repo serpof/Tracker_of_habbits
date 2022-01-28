@@ -27,7 +27,7 @@
                 android:layout_width="300dp"
                 android:layout_height="300dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/background"
+                app:srcCompat="@drawable/timer_gradient"
                 tools:ignore="ContentDescription" />
 
         </LinearLayout>

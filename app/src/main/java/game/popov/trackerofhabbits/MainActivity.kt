@@ -8,8 +8,6 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -83,9 +81,9 @@ class MainActivity : AppCompatActivity() {
             sound.setImageResource(R.drawable.music_on_button)
             pauseSound()
         }
-        var lastBrush = sharedPref.getLong("lastBrush", 0)
+        val lastBrush = sharedPref.getLong("lastBrush", 0)
         if (lastBrush > 0) {
-            var diffBetweenBrush = System.currentTimeMillis() - sharedPref.getLong("lastBrush", 0)
+            val diffBetweenBrush = System.currentTimeMillis() - sharedPref.getLong("lastBrush", 0)
             when {
                 diffBetweenBrush > thirdPeriod -> {
                     this.view_teeth.setImageResource(R.drawable.dirty_tooth_3)
