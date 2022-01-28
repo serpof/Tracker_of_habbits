@@ -31,7 +31,7 @@ class timer : AppCompatActivity() {
             playSound()
         }
         initWidgets()
-        startTimer( 10)
+        startTimer( 14)
         Glide.with(applicationContext)
             .load(R.raw.tooth_paste_anim)
             .into(imageView)
@@ -53,9 +53,9 @@ class timer : AppCompatActivity() {
     }
 
    private fun startTimer(countSeconds: Int){
-        val timer = Timer()
-        var taskProgress = 0
-        var seconds = countSeconds
+       val timer = Timer()
+       var taskProgress = 0
+       var seconds = countSeconds
        progressBar.max = countSeconds
        textView.clearComposingText()
        val text = getString(R.string.restOfSeconds)
@@ -95,9 +95,9 @@ class timer : AppCompatActivity() {
                     runOnUiThread {
                         textView.text = "$text $second"
                     }
+                    textView.clearComposingText()
                 } else {
                     runOnUiThread {
-                        textView.text = "$text 0"
                         timer.cancel()
                     }
                     currentCount++
@@ -111,12 +111,12 @@ class timer : AppCompatActivity() {
         if (currentCount < maxCount){
             if (currentCount < 5){
                 progressBar.progress = 0
-                startTimer(30)
+                startTimer(29)
                 return
             }
             else{
                 progressBar.progress = 0
-                startTimer (15)
+                startTimer (14)
                 return
             }
         }
