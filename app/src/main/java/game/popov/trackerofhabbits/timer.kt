@@ -98,6 +98,7 @@ class timer : AppCompatActivity() {
                     textView.clearComposingText()
                 } else {
                     runOnUiThread {
+                        textView.text = "$text 0"
                         timer.cancel()
                     }
                     currentCount++

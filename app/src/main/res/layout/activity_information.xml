@@ -29,12 +29,12 @@
                 android:id="@+id/aboutUs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:text="@string/info"
                 android:textColor="@color/design_default_color_on_secondary"
                 android:textSize="20sp"
                 android:textStyle="bold|italic"
-                android:padding="15dp"
-                app:autoSizeTextType="uniform"/>
+                app:autoSizeTextType="uniform" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
