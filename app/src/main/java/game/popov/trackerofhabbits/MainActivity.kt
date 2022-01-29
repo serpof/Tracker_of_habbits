@@ -10,20 +10,29 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
+/**
+ * Main screen activity
+ *
+ */
 class MainActivity : AppCompatActivity() {
 
     var mMediaPlayer: MediaPlayer? = null
+
     private var exit = false
-    private val firstPeriod = 21600000
-    private val secondPeriod = 57600000
-    private val thirdPeriod = 86400000
+
+    /*
+     * periods for different states of tooth (6-16-24-hours)
+     */
+    private val firstPeriod = 6*60*60*1000
+    private val secondPeriod = 16*60*60*1000
+    private val thirdPeriod = 24*60*60*1000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        checkSharedPref()
+        updateStates()
         start.setOnClickListener{
-            Intent(this, timer::class.java).apply {
+            Intent(this, BrushingTimer::class.java).apply {
                 startActivity(this)
             }
             pauseSound()
@@ -44,19 +53,18 @@ class MainActivity : AppCompatActivity() {
 
         sound.setOnClickListener{
             val sharedPref: SharedPreferences = getSharedPreferences("settings", MODE_PRIVATE)
-            if (sharedPref.getBoolean("sound", true)){
-                sharedPref.edit().putBoolean("sound", false).apply()
-                sound.setImageResource(R.drawable.music_on_button)
+            if (getSound(sharedPref)){
+                setSound(sharedPref, false)
                 pauseSound()
             } else{
-                sharedPref.edit().putBoolean("sound", true).apply()
-                sound.setImageResource(R.drawable.music_off_button)
+                setSound(sharedPref, true)
                 playSound()
             }
         }
     }
 
     private fun playSound() {
+        sound.setImageResource(R.drawable.music_off_button)
         if (mMediaPlayer == null) {
             mMediaPlayer = MediaPlayer.create(this, R.raw.brushing)
             mMediaPlayer!!.isLooping = true
@@ -65,25 +73,41 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun pauseSound() {
+        sound.setImageResource(R.drawable.music_on_button)
         if (mMediaPlayer != null && mMediaPlayer!!.isPlaying) mMediaPlayer!!.pause()
     }
 
-    private fun checkSharedPref() {
+    private fun getPoints(sharedPref: SharedPreferences): Int {
+        return sharedPref.getInt("points", 0)
+    }
+
+    private fun getSound(sharedPref: SharedPreferences): Boolean {
+        return sharedPref.getBoolean("sound", true)
+    }
+
+    private fun setSound(sharedPref: SharedPreferences, mode: Boolean) {
+        sharedPref.edit().putBoolean("sound", mode).apply()
+    }
+
+    private fun getLastBrushing(sharedPref: SharedPreferences): Long {
+        return sharedPref.getLong("lastBrush", 0)
+    }
+
+
+    private fun updateStates() {
+
+        //get information and settings from device
         val sharedPref: SharedPreferences = getSharedPreferences("settings", MODE_PRIVATE)
-        if (sharedPref.getInt("days", 0) != 0) {
-            val str = sharedPref.getInt("days", 0).toString()
-            this.textView.text = "$str"
-        }
-        if (sharedPref.getBoolean("sound", true)){
-            sound.setImageResource(R.drawable.music_off_button)
-            playSound()
-        } else {
-            sound.setImageResource(R.drawable.music_on_button)
-            pauseSound()
-        }
-        val lastBrush = sharedPref.getLong("lastBrush", 0)
-        if (lastBrush > 0) {
-            val diffBetweenBrush = System.currentTimeMillis() - sharedPref.getLong("lastBrush", 0)
+
+        this.textView.text = getPoints(sharedPref).toString()
+        updateMusicState(sharedPref)
+        updateToothState(sharedPref)
+    }
+
+    private fun updateToothState(sharedPref: SharedPreferences) {
+        val lastBrushing = getLastBrushing(sharedPref)
+        if (lastBrushing > 0) {
+            val diffBetweenBrush = System.currentTimeMillis() - lastBrushing
             when {
                 diffBetweenBrush > thirdPeriod -> {
                     this.view_teeth.setImageResource(R.drawable.dirty_tooth_3)
@@ -101,13 +125,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun updateMusicState(sharedPref: SharedPreferences) {
+        if (getSound(sharedPref)){
+            playSound()
+        } else {
+            pauseSound()
+        }
+    }
+
     override fun onBackPressed() {
         if (exit) {
             super.onBackPressed()
-            pauseSound()
             return
         } else {
-            Toast.makeText(applicationContext, "Нажмите еще раз, чтобы выйти", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, getString(R.string.pressToExit),
+                Toast.LENGTH_SHORT).show()
             exit = true
             Handler(Looper.getMainLooper()).postDelayed({ exit = false }, 2000)
         }
@@ -115,7 +147,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        checkSharedPref()
+        updateStates()
     }
 
     override fun onStop() {

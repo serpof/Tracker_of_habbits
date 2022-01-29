@@ -16,7 +16,7 @@
             android:name=".Information"
             android:exported="false" />
         <activity
-            android:name=".timer"
+            android:name=".BrushingTimer"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

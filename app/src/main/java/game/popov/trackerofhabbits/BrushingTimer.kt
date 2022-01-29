@@ -12,26 +12,57 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import java.util.*
 
-class timer : AppCompatActivity() {
+/**
+ * Process of brushing
+ */
+class BrushingTimer : AppCompatActivity() {
 
     lateinit var imageView: ImageView
     lateinit var textView: TextView
     lateinit var progressBar: ProgressBar
+
+
     var currentCount = 0
     private val maxCount = 8
-    private val periodBetweenBrush = 14400000
+
+    //time between brushes for adding points
+    private val periodBetweenBrush = 4*60*60*1000
     var mMediaPlayer: MediaPlayer? = null
+
+    // Seconds of brushing in different stages. Long stages - 30 seconds, short stages - 15 seconds
+    private val longStageTime = 30
+    private val shortStageTime = 15
+
+    private fun getSound(sharedPref: SharedPreferences): Boolean {
+        return sharedPref.getBoolean("sound", true)
+    }
+
+    private fun getPoints(sharedPref: SharedPreferences): Int {
+        return sharedPref.getInt("points", 0)
+    }
+
+    private fun setPoints(sharedPref: SharedPreferences, points: Int) {
+        sharedPref.edit().putInt("points", points).apply()
+    }
+
+    private fun getLastBrushing(sharedPref: SharedPreferences): Long {
+        return sharedPref.getLong("lastBrush", 0)
+    }
+
+    private fun setLastBrushing(sharedPref: SharedPreferences, lastBrush: Long) {
+        sharedPref.edit().putLong("lastBrush", lastBrush).apply()
+    }
 
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.timer)
         val sharedPref: SharedPreferences = getSharedPreferences("settings", MODE_PRIVATE)
-        if (sharedPref.getBoolean("sound", true)) {
+        if (getSound(sharedPref)) {
             playSound()
         }
         initWidgets()
-        startTimer( 14)
+        startTimer( shortStageTime)
         Glide.with(applicationContext)
             .load(R.raw.tooth_paste_anim)
             .into(imageView)
@@ -54,8 +85,8 @@ class timer : AppCompatActivity() {
 
    private fun startTimer(countSeconds: Int){
        val timer = Timer()
-       var taskProgress = 0
-       var seconds = countSeconds
+       var taskProgress = 1
+       var seconds = countSeconds - 1
        progressBar.max = countSeconds
        textView.clearComposingText()
        val text = getString(R.string.restOfSeconds)
@@ -108,30 +139,30 @@ class timer : AppCompatActivity() {
         }, 1000, 1000)
     }
 
+    private fun saveState(){
+        val sharedPref: SharedPreferences = getSharedPreferences("settings", MODE_PRIVATE)
+        var points = getPoints(sharedPref)
+        val now = System.currentTimeMillis()
+        if (now - getLastBrushing(sharedPref) > periodBetweenBrush) {
+            setPoints(sharedPref, ++points)
+            setLastBrushing(sharedPref, now)
+        }
+    }
+
     private fun startAgainIfNeed() {
         if (currentCount < maxCount){
             if (currentCount < 5){
                 progressBar.progress = 0
-                startTimer(29)
+                startTimer(longStageTime)
                 return
             }
             else{
                 progressBar.progress = 0
-                startTimer (14)
+                startTimer (shortStageTime)
                 return
             }
         }
-        val sharedPref: SharedPreferences = getSharedPreferences("settings", MODE_PRIVATE)
-        var times = sharedPref.getInt("days", 0)
-        if (times == 63){
-            sharedPref.edit().putInt("days", 0).apply()
-            times = sharedPref.getInt("days", 0)
-        }
-        val present = System.currentTimeMillis()
-        if (present - sharedPref.getLong("lastBrush", 0) > periodBetweenBrush) {
-            sharedPref.edit().putInt("days", ++times).apply()
-            sharedPref.edit().putLong("lastBrush", System.currentTimeMillis()).apply()
-        }
+        saveState()
         Intent(this, MainActivity::class.java).apply {
             startActivity(this)
         }

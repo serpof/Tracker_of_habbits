@@ -6,19 +6,29 @@ import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import kotlin.math.min
 import kotlinx.android.synthetic.main.activity_information.*
 
 class Progress : AppCompatActivity() {
 
     var mMediaPlayer: MediaPlayer? = null
+    var maxPointCount = 63
+
+    private fun getPoints(sharedPref: SharedPreferences): Int {
+        return sharedPref.getInt("points", 0)
+    }
+
+    private fun getSound(sharedPref: SharedPreferences): Boolean {
+        return sharedPref.getBoolean("sound", true)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_progress)
 
         val sharedPref: SharedPreferences = getSharedPreferences("settings", MODE_PRIVATE)
-        var endChange = sharedPref.getInt("days", 0)
-        if (sharedPref.getBoolean("sound", true)) {
+        var points = min(getPoints(sharedPref), maxPointCount)
+        if (getSound(sharedPref)) {
             playSound()
         }
 
@@ -88,7 +98,7 @@ class Progress : AppCompatActivity() {
             R.id.step63
         )
 
-        for(i in 0..--endChange){
+        for(i in 0..--points){
             val image = this.findViewById<ImageView>(steps[i])
             when(i){
                 0 -> image.setImageResource(R.drawable.step_1)

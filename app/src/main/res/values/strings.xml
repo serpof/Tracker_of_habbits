@@ -4,4 +4,5 @@
     <string name="textview">текст</string>
     <string name="info">\"Зубастик\" - детское приложение для гигиены полости рта. Предполагается  использование детьми под присмотром родителей.\n Автор - Popov Sergey\n\n Музыкальные лицензии\n\n Life of Riley by Kevin MacLeod\n Link: https://incompetech.filmmusic.io/song/3976-life-of-riley\n License: https://filmmusic.io/standard-license\n\n I Feel So Happy by MusicLFiles\n Link: https://filmmusic.io/song/8792-i-feel-so-happy\n License: https://filmmusic.io/standard-license\n\n Tutorial 1 by Frank Schröter\n Link: https://filmmusic.io/song/8793-tutorial-1\n License: https://filmmusic.io/standard-license\n\n Политика конфиденциальности: https://serpof.github.io/toothman_policy/</string>
     <string name="restOfSeconds">Осталось секунд:</string>
+    <string name="pressToExit">Нажмите еще раз, чтобы выйти</string>
 </resources>
