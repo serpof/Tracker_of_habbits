@@ -12,7 +12,6 @@ class Information : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_information)
-
         btn_back.setOnClickListener{
             Intent(this, MainActivity::class.java).apply {
                 startActivity(this)

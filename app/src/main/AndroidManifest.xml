@@ -10,11 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Notification"
+            android:exported="false"
+            android:theme="@style/AppTheme.Transparent"  />
+        <activity
             android:name=".Progress"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Information"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".BrushingTimer"
             android:exported="false"

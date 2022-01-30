@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/notification_bg"
+    android:layout_gravity="center"
+    android:layout_margin="10dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="30"
+        android:fontFamily="sans-serif-black"
+        android:lineSpacingExtra="8sp"
+        android:paddingTop="25dp"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        android:text="@string/help"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="@color/black95"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="30"
+        android:src="@drawable/no_points"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="30"
+            android:orientation="horizontal"
+            android:gravity="bottom"
+            android:padding="10dp">
+
+            <ImageButton
+                android:id="@+id/btn_cancel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_weight="50"
+                android:background="#00FFFFFF"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/cancel"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <ImageButton
+                android:id="@+id/btn_continue"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight="50"
+                android:background="#02FFFFFF"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/run_button"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </LinearLayout>
+
+</LinearLayout>

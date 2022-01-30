@@ -16,8 +16,7 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class MainActivity : AppCompatActivity() {
 
-    var mMediaPlayer: MediaPlayer? = null
-
+    private var mMediaPlayer: MediaPlayer? = null
     private var exit = false
 
     /*
@@ -26,16 +25,26 @@ class MainActivity : AppCompatActivity() {
     private val firstPeriod = 6*60*60*1000
     private val secondPeriod = 16*60*60*1000
     private val thirdPeriod = 24*60*60*1000
+    private val periodBetweenBrush = 4*60*60*1000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val sharedPref: SharedPreferences = getSharedPreferences("settings", MODE_PRIVATE)
+        val lastBrushing = getLastBrushing(sharedPref)
         updateStates()
+
         start.setOnClickListener{
-            Intent(this, BrushingTimer::class.java).apply {
-                startActivity(this)
+            if (System.currentTimeMillis() - lastBrushing < periodBetweenBrush){
+                Intent(this, Notification::class.java).apply {
+                    startActivity(this)
+                }
+            } else {
+                Intent(this, BrushingTimer::class.java).apply {
+                    startActivity(this)
+                }
+                pauseSound()
             }
-            pauseSound()
         }
 
         levels.setOnClickListener{
