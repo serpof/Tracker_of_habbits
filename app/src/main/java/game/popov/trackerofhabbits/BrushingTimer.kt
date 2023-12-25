@@ -38,7 +38,7 @@ class BrushingTimer : AppCompatActivity() {
     }
 
     private fun getPoints(sharedPref: SharedPreferences): Int {
-        return sharedPref.getInt("points", 32)
+        return sharedPref.getInt("points", 0)
     }
 
     private fun setPoints(sharedPref: SharedPreferences, points: Int) {

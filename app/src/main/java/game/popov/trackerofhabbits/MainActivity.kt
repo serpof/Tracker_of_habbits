@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getPoints(sharedPref: SharedPreferences): Int {
-        return sharedPref.getInt("points", 32)
+        return sharedPref.getInt("points", 0)
     }
 
     private fun getSound(sharedPref: SharedPreferences): Boolean {
