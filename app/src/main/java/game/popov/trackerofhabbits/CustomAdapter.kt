@@ -4,42 +4,42 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
-
-    // create new views
+class ProgressAdapter(
+    private val progressModelArrayList: ArrayList<ItemsViewModel>
+) : RecyclerView.Adapter<ProgressAdapter.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        // inflates the card_view_design view
-        // that is used to hold list item
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.card_view_design, parent, false)
-
+        // to inflate the layout for each item of recycler view.
+        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.card_view_design, parent, false)
         return ViewHolder(view)
     }
 
-    // binds the list items to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-        val ItemsViewModel = mList[position]
-
-        // sets the image to the imageview from our itemHolder class
-        holder.imageView.setImageResource(ItemsViewModel.image)
-
-        // sets the text to the textview from our itemHolder class
-        holder.textView.text = ItemsViewModel.text
-
+        // to set data to textview and imageview of each card layout
+        val model: ItemsViewModel = progressModelArrayList[position]
+        holder.tooth1.setImageResource(model.getTooth1())
+        holder.tooth2.setImageResource(model.getTooth2())
+        holder.tooth3.setImageResource(model.getTooth3())
+        holder.tooth4.setImageResource(model.getTooth4())
+        holder.tooth5.setImageResource(model.getTooth5())
+        holder.tooth6.setImageResource(model.getTooth6())
+        holder.animal.setImageResource(model.getAnimal())
     }
 
-    // return the number of the items in the list
     override fun getItemCount(): Int {
-        return mList.size
+        // this method is used for showing number of card items in recycler view.
+        return progressModelArrayList.size
     }
 
-    // Holds the views for adding it to image and text
-    class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-        val imageView: ImageView = itemView.findViewById(R.id.imageview)
-        val textView: TextView = itemView.findViewById(R.id.textView)
+    // View holder class for initializing of your views such as TextView and Imageview.
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val tooth1: ImageView = itemView.findViewById(R.id.tooth1)
+        val tooth2: ImageView = itemView.findViewById(R.id.tooth2)
+        val tooth3: ImageView = itemView.findViewById(R.id.tooth3)
+        val tooth4: ImageView = itemView.findViewById(R.id.tooth4)
+        val tooth5: ImageView = itemView.findViewById(R.id.tooth5)
+        val tooth6: ImageView = itemView.findViewById(R.id.tooth6)
+        val animal: ImageView = itemView.findViewById(R.id.animal)
     }
 }
